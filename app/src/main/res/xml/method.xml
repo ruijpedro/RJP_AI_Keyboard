@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<input-method xmlns:android="http://schemas.android.com/apk/res/android"
+    android:settingsActivity="pt.rjp.aikeyboard.ui.MainActivity"
+    android:supportsSwitchingToNextInputMethod="true">
+    <subtype android:label="@string/subtype_generic" android:imeSubtypeLocale="pt_PT" android:imeSubtypeMode="keyboard" />
+    <subtype android:label="@string/subtype_generic" android:imeSubtypeLocale="en_GB" android:imeSubtypeMode="keyboard" />
+    <subtype android:label="@string/subtype_generic" android:imeSubtypeLocale="it_IT" android:imeSubtypeMode="keyboard" />
+    <subtype android:label="@string/subtype_generic" android:imeSubtypeLocale="es_ES" android:imeSubtypeMode="keyboard" />
+    <subtype android:label="@string/subtype_generic" android:imeSubtypeLocale="fr_FR" android:imeSubtypeMode="keyboard" />
+    <subtype android:label="@string/subtype_generic" android:imeSubtypeLocale="de_DE" android:imeSubtypeMode="keyboard" />
+</input-method>

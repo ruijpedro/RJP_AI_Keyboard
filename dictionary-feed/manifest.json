@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-09-19T10:17:56.382070+00:00",
+  "dictionaries": {
+    "pt_PT": {
+      "version": "99420fa38e746b6c",
+      "file": "pt_PT.tsv",
+      "sha256": "99420fa38e746b6c9a77361d798ced1580a536cb88b9823229858c44377af5c6",
+      "entries": 726
+    },
+    "en_GB": {
+      "version": "76fbee9f35551cf0",
+      "file": "en_GB.tsv",
+      "sha256": "76fbee9f35551cf0fdb94db750a50afbe2f40bf3e165e8916fc41eca3ce8db8c",
+      "entries": 598
+    },
+    "it_IT": {
+      "version": "ba2585482195077f",
+      "file": "it_IT.tsv",
+      "sha256": "ba2585482195077f5e48e5b9a3b0491d2683736593dda934fe30939ef7870ab9",
+      "entries": 876
+    },
+    "es_ES": {
+      "version": "8963d1ebd7f3e943",
+      "file": "es_ES.tsv",
+      "sha256": "8963d1ebd7f3e943f3c95a96125e7edc5617a8aaba0f8c334bfdb2847c4ae71c",
+      "entries": 779
+    },
+    "fr_FR": {
+      "version": "060d3bd1494c894b",
+      "file": "fr_FR.tsv",
+      "sha256": "060d3bd1494c894bfd3dc4debc0a1c4f3e34e8895bd0e396b741cadcca9b9832",
+      "entries": 767
+    },
+    "de_DE": {
+      "version": "c8f5fcccb6d90b89",
+      "file": "de_DE.tsv",
+      "sha256": "c8f5fcccb6d90b89b9647ccc24b59801815673bda64026d9bb262b2de2d051b6",
+      "entries": 793
+    }
+  }
+}
