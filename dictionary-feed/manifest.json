@@ -1,42 +1,42 @@
 {
   "schema": 1,
-  "generatedAt": "2026-09-19T10:17:56.382070+00:00",
+  "generatedAt": "2026-09-21T07:36:04.026918+00:00",
   "dictionaries": {
     "pt_PT": {
-      "version": "99420fa38e746b6c",
+      "version": "c482b011192e29d6",
       "file": "pt_PT.tsv",
-      "sha256": "99420fa38e746b6c9a77361d798ced1580a536cb88b9823229858c44377af5c6",
-      "entries": 726
+      "sha256": "c482b011192e29d6a39d9e3f4a553e805aaf5763fd333a945cb69a8ca3e2e118",
+      "entries": 42456
     },
     "en_GB": {
-      "version": "76fbee9f35551cf0",
+      "version": "1884ef41fe911665",
       "file": "en_GB.tsv",
-      "sha256": "76fbee9f35551cf0fdb94db750a50afbe2f40bf3e165e8916fc41eca3ce8db8c",
-      "entries": 598
+      "sha256": "1884ef41fe9116653b1feae98fae99dabab69ad11c88e2807e8b05284a32b7e5",
+      "entries": 48357
     },
     "it_IT": {
-      "version": "ba2585482195077f",
+      "version": "e084e3d8ffeea19e",
       "file": "it_IT.tsv",
-      "sha256": "ba2585482195077f5e48e5b9a3b0491d2683736593dda934fe30939ef7870ab9",
-      "entries": 876
+      "sha256": "e084e3d8ffeea19efb811b577bf53ba8c632bff330b349598c847d10c070c23f",
+      "entries": 95596
     },
     "es_ES": {
-      "version": "8963d1ebd7f3e943",
+      "version": "e7ab7cf65f8e174b",
       "file": "es_ES.tsv",
-      "sha256": "8963d1ebd7f3e943f3c95a96125e7edc5617a8aaba0f8c334bfdb2847c4ae71c",
-      "entries": 779
+      "sha256": "e7ab7cf65f8e174b144a815533570678f9bc6a9d871184491cadbb779a843c87",
+      "entries": 55091
     },
     "fr_FR": {
-      "version": "060d3bd1494c894b",
+      "version": "1214bd7c8fc4e96a",
       "file": "fr_FR.tsv",
-      "sha256": "060d3bd1494c894bfd3dc4debc0a1c4f3e34e8895bd0e396b741cadcca9b9832",
-      "entries": 767
+      "sha256": "1214bd7c8fc4e96a59f08b9b0f948da85f9dd4b13323224c7604cd39c5b892dc",
+      "entries": 81801
     },
     "de_DE": {
-      "version": "c8f5fcccb6d90b89",
+      "version": "468cdaf74af630d9",
       "file": "de_DE.tsv",
-      "sha256": "c8f5fcccb6d90b89b9647ccc24b59801815673bda64026d9bb262b2de2d051b6",
-      "entries": 793
+      "sha256": "468cdaf74af630d984b79cf4ca3368dac6ddab8438d6a5c1be7ec7b8bc56e51c",
+      "entries": 48618
     }
   }
 }
