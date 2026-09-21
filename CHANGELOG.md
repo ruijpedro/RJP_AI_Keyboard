@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.1
+
+- Corrige crash/OOM no arranque com dicionários Hunspell completos.
+- Motor fuzzy redesenhado com índice de eliminações distância 1 limitado a 12 000 palavras e fallback por comprimento.
+- Mantém correção final até distância Damerau-Levenshtein 2 sem criar milhões de chaves em memória.
+- Carregamento dos dicionários protegido: uma atualização inválida nunca impede o teclado de arrancar.
+- Atualização automática e JobScheduler isolados com tratamento de erros.
+- O workflow de build deixa de embutir os dicionários gigantes no APK; os dicionários completos chegam pelo feed automático.
+- `build.yml` legado passa a ser válido e deixa de falhar em cada push.
+
 ## 1.1.0
 - Atualização automática dos seis dicionários sem reinstalar o APK.
 - Feed de dicionários alojado no próprio repositório GitHub.

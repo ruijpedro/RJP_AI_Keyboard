@@ -10,6 +10,13 @@ Consulta `AUTO_DICTIONARY_UPDATES.md` para o funcionamento completo.
 
 Teclado Android nativo (IME) com foco em correção rápida e Português de Portugal.
 
+
+## V1.1.1 — estabilidade e memória
+
+A V1.1.1 corrige um problema de memória observado em Android real quando o workflow incorporava dezenas de milhares de palavras Hunspell diretamente no APK. O APK passa a incluir apenas os dicionários base e o motor recebe as versões completas através do `dictionary-feed`. O índice fuzzy foi redesenhado para manter baixo consumo de RAM e continuar a aceitar correções até distância 2.
+
+Depois de atualizar o código, execute primeiro **Update Runtime Dictionaries** (opcional, para publicar o feed completo) e depois **Build Android APK**.
+
 ## Incluído
 
 - Português (Portugal), Inglês, Italiano, Espanhol, Francês e Alemão.

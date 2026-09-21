@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.Gravity
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -21,9 +22,15 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefs = KeyboardPreferences(this)
-        DictionaryUpdateManager.schedule(this)
-        DictionaryUpdateManager.maybeUpdateNow(this)
+        // Draw settings first. Background maintenance must never prevent the
+        // configuration screen from opening on OEM-specific Android builds.
         setContentView(buildUi())
+        try {
+            DictionaryUpdateManager.schedule(this)
+            DictionaryUpdateManager.maybeUpdateNow(this)
+        } catch (t: Throwable) {
+            Log.w("RjpMain", "Dictionary maintenance could not start", t)
+        }
     }
 
     private fun buildUi(): ScrollView {

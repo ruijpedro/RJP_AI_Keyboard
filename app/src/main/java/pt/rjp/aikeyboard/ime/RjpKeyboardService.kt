@@ -10,6 +10,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.text.InputType
 import android.view.Gravity
 import android.view.View
@@ -40,7 +41,10 @@ class RjpKeyboardService : InputMethodService() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == DictionaryUpdateManager.ACTION_DICTIONARIES_UPDATED) {
                 repository.invalidateAll()
-                executor.execute { repository.get(prefs.language) }
+                executor.execute {
+                    try { repository.get(prefs.language) }
+                    catch (t: Throwable) { Log.w("RjpKeyboard", "Dictionary reload failed", t) }
+                }
                 if (::keyboard.isInitialized) updateSuggestions()
             }
         }
@@ -52,14 +56,25 @@ class RjpKeyboardService : InputMethodService() {
         repository = DictionaryRepository(this)
         engine = CorrectionEngine(repository)
         val filter = IntentFilter(DictionaryUpdateManager.ACTION_DICTIONARIES_UPDATED)
-        if (Build.VERSION.SDK_INT >= 33) {
-            registerReceiver(dictionaryUpdateReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
-        } else {
-            registerReceiver(dictionaryUpdateReceiver, filter)
+        try {
+            if (Build.VERSION.SDK_INT >= 33) {
+                registerReceiver(dictionaryUpdateReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+            } else {
+                registerReceiver(dictionaryUpdateReceiver, filter)
+            }
+        } catch (t: Throwable) {
+            Log.w("RjpKeyboard", "Dictionary receiver registration failed", t)
         }
-        DictionaryUpdateManager.schedule(this)
-        DictionaryUpdateManager.maybeUpdateNow(this)
-        executor.execute { repository.get(prefs.language) }
+        try {
+            DictionaryUpdateManager.schedule(this)
+            DictionaryUpdateManager.maybeUpdateNow(this)
+        } catch (t: Throwable) {
+            Log.w("RjpKeyboard", "Dictionary maintenance could not start", t)
+        }
+        executor.execute {
+            try { repository.get(prefs.language) }
+            catch (t: Throwable) { Log.w("RjpKeyboard", "Initial dictionary preload failed", t) }
+        }
     }
 
     override fun onDestroy() {
@@ -146,7 +161,13 @@ class RjpKeyboardService : InputMethodService() {
     private fun commitWordAndSeparator(separator: String) {
         if (composing.isNotEmpty()) {
             val source = composing.toString()
-            val correction = if (prefs.autoCorrect && !isSensitiveField()) engine.autoCorrection(prefs.language, source, previousWord) else null
+            val correction = if (prefs.autoCorrect && !isSensitiveField()) {
+                try { engine.autoCorrection(prefs.language, source, previousWord) }
+                catch (t: Throwable) {
+                    Log.w("RjpKeyboard", "Autocorrection failed", t)
+                    null
+                }
+            } else null
             val finalWord = correction ?: source
             currentInputConnection?.commitText(finalWord, 1)
             if (!prefs.privateMode && !isSensitiveField()) engine.learn(prefs.language, finalWord)
@@ -187,7 +208,12 @@ class RjpKeyboardService : InputMethodService() {
         val language = prefs.language
         val prev = if (prefs.smartContext) previousWord else null
         executor.execute {
-            val items = engine.suggestions(language, word, prev, 3)
+            val items = try {
+                engine.suggestions(language, word, prev, 3)
+            } catch (t: Throwable) {
+                Log.w("RjpKeyboard", "Suggestion lookup failed", t)
+                emptyList()
+            }
             mainHandler.post {
                 if (generation != suggestionGeneration || word != composing.toString()) return@post
                 candidateViews.forEachIndexed { i, v -> v.text = items.getOrNull(i)?.word.orEmpty() }
@@ -233,7 +259,10 @@ class RjpKeyboardService : InputMethodService() {
         val values = Language.entries
         prefs.language = values[(values.indexOf(prefs.language) + 1) % values.size]
         languageView.text = prefs.language.shortLabel
-        executor.execute { repository.get(prefs.language) }
+        executor.execute {
+            try { repository.get(prefs.language) }
+            catch (t: Throwable) { Log.w("RjpKeyboard", "Language dictionary preload failed", t) }
+        }
         refreshLayout()
         clearSuggestions()
     }
