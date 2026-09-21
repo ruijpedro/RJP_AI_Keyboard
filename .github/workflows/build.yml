@@ -1,1 +1,10 @@
+name: Legacy build shortcut
 
+on:
+  workflow_dispatch:
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Use the 'Build Android APK' workflow (android.yml) for the real APK build."

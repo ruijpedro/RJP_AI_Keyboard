@@ -17,19 +17,15 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Node 22
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
 
-      - name: Enrich bundled language dictionaries
-        run: bash tools/enrich_dictionaries.sh
-
+      # IMPORTANT: do not merge the full Hunspell packages into the APK here.
+      # The complete dictionaries are published by update-dictionaries.yml and
+      # downloaded safely at runtime. Keeping starter dictionaries in the APK
+      # makes startup predictable and avoids large in-memory indexes.
       - name: Build debug APK with automatic dictionary feed
         env:
           REPO: ${{ github.repository }}
